@@ -4,6 +4,9 @@
 body {
   background: lightblue; }
 
+.hidden {
+  display: none; }
+
 .divider {
   width: 50%;
   float: left;

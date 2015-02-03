@@ -4,7 +4,7 @@ html
     link(href='style.css', rel='stylesheet')
   body
 
-    #input.divider
+    #input.divider.hidden
       div what do you want to track
       div.set
         label label
@@ -21,7 +21,11 @@ html
           input(type="radio", name="type", class="textarea", value="textarea")
           | Long Text
       button#submit add
-    #character.divider
+    #character.divider.hidden
       #output
       button#save save
+    #overlay.hidden
+      p Would you like to use the wizard to help you get started?
+      button#yes yes
+      button#no no
     script(src="script.js")

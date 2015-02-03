@@ -7,14 +7,49 @@
   window.character = JSON.parse(window.localStorage.getItem('character'));
   if (window.character === null) {
     window.character = {};
+    firstLaunch();
   } else {
-    render();
+    initRender();
   }
 })();
 
+// first launch figure out if they want wizard or not
+function firstLaunch() {
+  var overlay = document.getElementById('overlay');
+  overlay.classList.remove('hidden');
+  var yesButton = document.getElementById('yes');
+  yesButton.addEventListener("click", launchWizard, false);
+  var noButton = document.getElementById('no');
+  noButton.addEventListener("click", initRender, false);
+}
+
+// first launch wizard
+function launchWizard() {
+  window.suggestedCharacter = {
+    'name': {
+      'type': 'text',
+      'value': 'What is the name of your character?',
+      'title': 'name'
+    },
+    'class': {
+      'type': 'text',
+      'value': 'Class or race',
+      'title': 'class'
+    },
+    'level': {
+      'type': 'number',
+      'value': '1',
+      'title': 'level'
+    }
+  };
+  for (var i in window.suggestedCharacter) {
+    // render out these things and make it pretty
+  }
+}
+
 // make sure inputs are filled out and send them to be added to character
 function evaluateInput() {
-  aKey = document.getElementById('key').value.toLowerCase();
+  aKey = document.getElementById('key').value.toLowerCase().replace(/\s+/g, '_'); // lowercase and remove spaces for keys
   aVal = document.getElementById('value').value;
   radioButtons = [].slice.call(document.getElementById('radio').getElementsByTagName('input'), 0);
   for (var r in radioButtons) {
@@ -38,11 +73,19 @@ function addToObject(aKey,aVal,inputType) {
   };
   save();
   clearInput();
-  render();
+  renderCharacter();
+}
+
+// get things ready for first render
+function initRender() {
+  document.getElementById('overlay').classList.add('hidden');
+  document.getElementById('character').classList.remove('hidden');
+  document.getElementById('input').classList.remove('hidden');
+  renderCharacter();
 }
 
 // find out what needs to be rendered and render it
-function render() {
+function renderCharacter() {
   c = window.character;
   for (var p in window.character) {
     var el = document.getElementById(p);
@@ -104,7 +147,8 @@ function save() {
 
 // TODO setup wizard
 // TODO advanced settings to say things like you level up every 150 points
-// TODO make all things lowercase and underscore
 // TODO be able to change labels
 // TODO set limits for fields that are editable on a later date
+// TODO history or just a simple undo option
+// TODO button to use things like spells
 // BUG deleting one field reset the long text field back to original state. refresh fixed it
