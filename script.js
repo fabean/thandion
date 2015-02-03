@@ -151,4 +151,49 @@ function save() {
 // TODO set limits for fields that are editable on a later date
 // TODO history or just a simple undo option
 // TODO button to use things like spells
-// BUG deleting one field reset the long text field back to original state. refresh fixed it
+// TODO linking damage and endurance to eachother is going to take some critical thinking. This is all hard because I'm wanting user to be able to input all of this and this code take whatever is given to it.
+
+/*
+what object should look like
+
+character: {
+  'spell': {
+    'title': 'spell',
+    'type': 'multiple', // ?
+    'value': {
+      'speed': {
+        'type': 'action', // this makes is usable?
+        'title': 'speed',
+        'dependant': {
+          'id': 'damage',
+          'operation': '+',
+          'amount': 4
+        }
+      },
+      'charm': {
+        type': 'action', // this makes is usable?
+        'title': 'charm',
+        'dependant': {
+          'id': 'damage',
+          'operation': '+',
+          'amount': 5
+        }
+      }
+    }
+  },
+  'damage': {
+    'title': 'damage',
+    'type': 'number',
+    'value': 20,
+    'dependant': {
+      'id': 'endurance',
+      'operation': '%', // how the heck will I do this?
+    }
+  },
+  'endurance': {
+    'title': 'endurance',
+    'type': 'number',
+    'value': 42
+  }
+}
+*/
