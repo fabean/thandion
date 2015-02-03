@@ -105,3 +105,6 @@ function save() {
 // TODO setup wizard
 // TODO advanced settings to say things like you level up every 150 points
 // TODO make all things lowercase and underscore
+// TODO be able to change labels
+// TODO set limits for fields that are editable on a later date
+// BUG deleting one field reset the long text field back to original state. refresh fixed it
