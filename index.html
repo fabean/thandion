@@ -1,0 +1,32 @@
+
+<html>
+  <head>
+    <title>my site</title>
+    <link href="style.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="input" class="divider">
+      <div>what do you want to track</div>
+      <div class="set">
+        <label>label</label>
+        <input id="key"/>
+      </div>
+      <div class="set">
+        <label>value</label>
+        <input id="value"/>
+        <div id="radio">
+          <p>what type of field is this</p>
+          <input type="radio" name="type" value="number" checked="true" class="number"/>Number
+          <input type="radio" name="type" value="text" class="text"/>Text
+          <input type="radio" name="type" value="textarea" class="textarea"/>Long Text
+        </div>
+      </div>
+      <button id="submit">add</button>
+    </div>
+    <div id="character" class="divider">
+      <div id="output"></div>
+      <button id="save">save</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

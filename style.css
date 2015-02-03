@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  background: lightblue; }
+
+.divider {
+  width: 50%;
+  float: left;
+  padding: 25px; }
+
+.delete {
+  margin: 0 5px;
+  cursor: pointer; }
+
+.set {
+  margin: 10px 0; }
+  .set label {
+    width: 14%;
+    margin: 0 5px;
+    display: inline-block;
+    text-align: right;
+    text-transform: capitalize; }
+    #output .set label {
+      background: url("./img/draggable.png") no-repeat center left;
+      background-size: 10px;
+      cursor: move; }
+
+/*# sourceMappingURL=style.css.map */

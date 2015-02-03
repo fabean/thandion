@@ -1,0 +1,27 @@
+html
+  head
+    title my site
+    link(href='style.css', rel='stylesheet')
+  body
+
+    #input.divider
+      div what do you want to track
+      div.set
+        label label
+        input#key
+      div.set
+        label value
+        input#value
+        div#radio
+          p what type of field is this
+          input(type="radio", name="type", class="number", value="number", checked="true")
+          | Number
+          input(type="radio", name="type", class="text", value="text")
+          | Text
+          input(type="radio", name="type", class="textarea", value="textarea")
+          | Long Text
+      button#submit add
+    #character.divider
+      #output
+      button#save save
+    script(src="script.js")
