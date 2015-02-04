@@ -14,3 +14,47 @@ List of TODOS
 * TODO set limits for fields that are editable on a later date
 * TODO history or just a simple undo option
 * TODO button to use things like spells
+
+sample object
+```
+character: {
+  'spell': {
+    'title': 'spell',
+    'type': 'multiple', // ?
+    'value': {
+      'speed': {
+        'type': 'action', // this makes is usable?
+        'title': 'speed',
+        'dependant': {
+          'id': 'damage',
+          'operation': '+',
+          'amount': 4
+        }
+      },
+      'charm': {
+        type': 'action', // this makes is usable?
+        'title': 'charm',
+        'dependant': {
+          'id': 'damage',
+          'operation': '+',
+          'amount': 5
+        }
+      }
+    }
+  },
+  'damage': {
+    'title': 'damage',
+    'type': 'number',
+    'value': 20,
+    'dependant': {
+      'id': 'endurance',
+      'operation': '%', // how the heck will I do this?
+    }
+  },
+  'endurance': {
+    'title': 'endurance',
+    'type': 'number',
+    'value': 42
+  }
+}
+```
