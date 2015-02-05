@@ -25,7 +25,8 @@ function firstLaunch() {
 
 // first launch wizard
 function launchWizard() {
-  window.suggestedCharacter = {
+  document.getElementById('firstprompt').classList.add('hidden');
+  var sC = {
     'name': {
       'type': 'text',
       'value': 'What is the name of your character?',
@@ -42,8 +43,19 @@ function launchWizard() {
       'title': 'level'
     }
   };
-  for (var i in window.suggestedCharacter) {
+  for (var i in sC) {
+    console.log(sC);
     // render out these things and make it pretty
+    body = document.getElementById('overlay');
+    output = '<div class="set ' + i + '" id="row-' + i + '" draggable="true">';
+    output += '<label for="' + i +'">' + i + '</label>';
+    if (sC[i].type === 'textarea') {
+      output += '<textarea id="' + i + '" rows="10" cols="50" class="attribute">' + sC[i].value + '</textarea>';
+    } else {
+      output += '<input id="' + i + '" value="' + sC[i].value + '" type="' + sC[i].type + '"  class="attribute"/>';
+    }
+    output += '</div>';
+    body.innerHTML += output;
   }
 }
 
