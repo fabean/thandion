@@ -25,13 +25,14 @@ var person = (function () {
     this.fullLife = options.fullLife;
     this.currentLife = options.currentLife;
     this.experience = options.experience;
+    this.weapon = options.weapon;
   }
 
   _createClass(person, {
     unequipWeapon: {
       value: function unequipWeapon() {
         this.strength -= this.weapon.damage;
-        this.weapon = "unarmed";
+        this.weapon = "hand";
       }
     },
     equipWeapon: {
@@ -59,6 +60,7 @@ var weapon = (function () {
   function weapon(options) {
     _classCallCheck(this, weapon);
 
+    this.title = options.title;
     this.damage = options.damage;
     this.defense = options.defense;
     this.agility = options.agility;
@@ -77,7 +79,27 @@ var weapon = (function () {
   return weapon;
 })();
 
+var magic = (function () {
+  function magic(options) {
+    _classCallCheck(this, magic);
+
+    this.title = options.title;
+    this.damage = options.damage;
+  }
+
+  _createClass(magic, {
+    render: {
+      value: function render() {
+        console.log(this);
+      }
+    }
+  });
+
+  return magic;
+})();
+
 var sword = new weapon({
+  title: "Sword",
   damage: 5,
   defense: 7,
   agility: 6
@@ -100,5 +122,11 @@ var thandion = new person({
   baseMagical: 1,
   fullLife: 40,
   currentLife: 40,
-  experience: 0
+  experience: 0,
+  weapon: "hand"
+});
+
+var speed = new magic({
+  title: "Speed",
+  damage: 4
 });

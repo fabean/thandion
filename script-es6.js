@@ -17,11 +17,12 @@ class person {
     this.fullLife = options.fullLife;
     this.currentLife = options.currentLife;
     this.experience = options.experience;
+    this.weapon = options.weapon;
   }
 
   unequipWeapon() {
     this.strength -= this.weapon.damage;
-    this.weapon = 'unarmed';
+    this.weapon = 'hand';
   }
 
   equipWeapon(weapon) {
@@ -32,15 +33,15 @@ class person {
   takeDamage(damage) {
     this.currentLife -= damage;
   }
+
   render() {
     console.log(this);
   }
 }
 
-
-
 class weapon {
   constructor(options) {
+    this.title = options.title;
     this.damage = options.damage;
     this.defense = options.defense;
     this.agility = options.agility;
@@ -53,7 +54,19 @@ class weapon {
   }
 }
 
+class magic {
+  constructor(options) {
+    this.title = options.title;
+    this.damage = options.damage;
+  }
+
+  render() {
+    console.log(this);
+  }
+}
+
 let sword = new weapon({
+  title: 'Sword',
   damage: 5,
   defense: 7,
   agility: 6
@@ -76,5 +89,11 @@ let thandion = new person({
   baseMagical: 1,
   fullLife: 40,
   currentLife: 40,
-  experience: 0
+  experience: 0,
+  weapon: 'hand'
+});
+
+let speed = new magic({
+  title: 'Speed',
+  damage: 4
 });
