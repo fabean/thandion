@@ -30,8 +30,49 @@ class person {
     this.strength = this.baseStrength + weapon.damage;
   }
 
+  equipMagic(magic){
+  	this.magic = magic;
+  	this.fullMagical = this.baseMagical + magic.damage;
+  }
+
   takeDamage(damage) {
     this.currentLife -= damage;
+    if(this.currentLife <=0){
+    	this.loseFight();
+    }
+  }
+
+  beginFight(enemy){
+  	if(this.oponnent != null){
+  		this.opponent = null;
+  	}
+  	this.opponent = enemy;
+  }
+
+  winFight(){
+  	let enemy = this.opponent.title;
+  	this.opponent = null;
+  	console.log(enemy + " is dead! You circle around its lifeless corpse in an arrogant victory dance. Please stop shaking your rump.");
+  }
+
+  loseFight(){
+  	let enemy = this.opponent.title;
+  	this.opponent = null;
+  	console.log(enemy + " has killed you. Now it will take you home and stuff you, using you as a decoration.");
+  }
+
+  physicalAttack(){
+  	this.opponent.life -= this.fullMagical;
+  	if(this.opponent.life <= 0){
+  		this.winFight();
+  	}
+  }
+
+  castSpell(){
+  	this.opponent.life -= this.fullMagical;
+  	if(this.opponent.life <= 0){
+  		this.winFight();
+  	}
   }
 
   render() {
@@ -65,6 +106,15 @@ class magic {
   }
 }
 
+class enemy {
+	constructor(options){
+		this.title = options.title;
+		this.fullLife = options.fullLife;
+		this.life = options.life;
+		this.damage = options.damage;
+	}
+}
+
 let sword = new weapon({
   title: 'Sword',
   damage: 5,
@@ -96,4 +146,11 @@ let thandion = new person({
 let speed = new magic({
   title: 'Speed',
   damage: 4
+});
+
+let gorlak = new enemy({
+	title: 'Gorlak',
+	damage: 3,
+	life: 30,
+	fullLife: 30
 });

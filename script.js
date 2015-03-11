@@ -41,9 +41,56 @@ var person = (function () {
         this.strength = this.baseStrength + weapon.damage;
       }
     },
+    equipMagic: {
+      value: function equipMagic(magic) {
+        this.magic = magic;
+        this.fullMagical = this.baseMagical + magic.damage;
+      }
+    },
     takeDamage: {
       value: function takeDamage(damage) {
         this.currentLife -= damage;
+        if (this.currentLife <= 0) {
+          this.loseFight();
+        }
+      }
+    },
+    beginFight: {
+      value: function beginFight(enemy) {
+        if (this.oponnent != null) {
+          this.opponent = null;
+        }
+        this.opponent = enemy;
+      }
+    },
+    winFight: {
+      value: function winFight() {
+        var enemy = this.opponent.title;
+        this.opponent = null;
+        console.log(enemy + " is dead! You circle around its lifeless corpse in an arrogant victory dance. Please stop shaking your rump.");
+      }
+    },
+    loseFight: {
+      value: function loseFight() {
+        var enemy = this.opponent.title;
+        this.opponent = null;
+        console.log(enemy + " has killed you. Now it will take you home and stuff you, using you as a decoration.");
+      }
+    },
+    physicalAttack: {
+      value: function physicalAttack() {
+        this.opponent.life -= this.fullMagical;
+        if (this.opponent.life <= 0) {
+          this.winFight();
+        }
+      }
+    },
+    castSpell: {
+      value: function castSpell() {
+        this.opponent.life -= this.fullMagical;
+        if (this.opponent.life <= 0) {
+          this.winFight();
+        }
       }
     },
     render: {
@@ -98,6 +145,15 @@ var magic = (function () {
   return magic;
 })();
 
+var enemy = function enemy(options) {
+  _classCallCheck(this, enemy);
+
+  this.title = options.title;
+  this.fullLife = options.fullLife;
+  this.life = options.life;
+  this.damage = options.damage;
+};
+
 var sword = new weapon({
   title: "Sword",
   damage: 5,
@@ -129,4 +185,11 @@ var thandion = new person({
 var speed = new magic({
   title: "Speed",
   damage: 4
+});
+
+var gorlak = new enemy({
+  title: "Gorlak",
+  damage: 3,
+  life: 30,
+  fullLife: 30
 });
