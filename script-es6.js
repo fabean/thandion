@@ -1,6 +1,14 @@
-class person {
+// types of things you can have
+
+// character
+// weapon
+// magic
+// inventory
+//
+
+class character {
   constructor(options) {
-    this.fname = options.fname;
+    this.cname = options.cname;
     this.race = options.race;
     this.clique = options.clique;
     this.baseStrength = options.baseStrength;
@@ -18,6 +26,8 @@ class person {
     this.currentLife = options.currentLife;
     this.experience = options.experience;
     this.weapon = options.weapon;
+    this.level = options.level,
+    this.levelUp = options.levelUp
   }
 
   unequipWeapon() {
@@ -35,7 +45,9 @@ class person {
   }
 
   render() {
-    console.log(this);
+    for (let i in this) {
+      console.log(`${i}: ${this[i]}`);
+    }
   }
 }
 
@@ -60,6 +72,10 @@ class magic {
     this.damage = options.damage;
   }
 
+  use() {
+
+  }
+
   render() {
     console.log(this);
   }
@@ -72,8 +88,8 @@ let sword = new weapon({
   agility: 6
 });
 
-let thandion = new person({
-  fname: 'Thandion',
+let thandion = new character({
+  cname: 'Thandion',
   race: 'Elf',
   clique: 'Bard',
   baseStrength: 1,
@@ -90,7 +106,9 @@ let thandion = new person({
   fullLife: 40,
   currentLife: 40,
   experience: 0,
-  weapon: 'hand'
+  weapon: 'hand',
+  level: 4,
+  levelUp: 150
 });
 
 let speed = new magic({
