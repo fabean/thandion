@@ -78,11 +78,12 @@ class character {
     }
   }
 
-  castSpell(){
-    this.opponent.life -= this.fullMagical;
-    if(this.opponent.life <= 0){
-      this.winFight();
-    }
+  castSpell(spell){
+    this.takeDamage(spell.selfDamage);
+    // this.opponent.life -= this.fullMagical;
+    // if(this.opponent.life <= 0){
+    //   this.winFight();
+    // }
   }
 
   render() {
@@ -110,6 +111,7 @@ class weapon {
 class magic {
   constructor(options) {
     this.title = options.title;
+    this.selfDamage = options.selfDamage;
     this.damage = options.damage;
   }
 
@@ -163,7 +165,7 @@ let thandion = new character({
 
 let speed = new magic({
   title: 'Speed',
-  damage: 4
+  selfDamage: 4
 });
 
 let gorlak = new enemy({

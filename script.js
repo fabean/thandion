@@ -95,11 +95,12 @@ var character = (function () {
       }
     },
     castSpell: {
-      value: function castSpell() {
-        this.opponent.life -= this.fullMagical;
-        if (this.opponent.life <= 0) {
-          this.winFight();
-        }
+      value: function castSpell(spell) {
+        this.takeDamage(spell.selfDamage);
+        // this.opponent.life -= this.fullMagical;
+        // if(this.opponent.life <= 0){
+        //   this.winFight();
+        // }
       }
     },
     render: {
@@ -142,6 +143,7 @@ var magic = (function () {
     _classCallCheck(this, magic);
 
     this.title = options.title;
+    this.selfDamage = options.selfDamage;
     this.damage = options.damage;
   }
 
@@ -200,7 +202,7 @@ var thandion = new character({
 
 var speed = new magic({
   title: "Speed",
-  damage: 4
+  selfDamage: 4
 });
 
 var gorlak = new enemy({
