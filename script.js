@@ -4,11 +4,19 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 
-var person = (function () {
-  function person(options) {
-    _classCallCheck(this, person);
+// types of things you can have
 
-    this.fname = options.fname;
+// character
+// weapon
+// magic
+// inventory
+//
+
+var character = (function () {
+  function character(options) {
+    _classCallCheck(this, character);
+
+    this.cname = options.cname;
     this.race = options.race;
     this.clique = options.clique;
     this.baseStrength = options.baseStrength;
@@ -26,9 +34,10 @@ var person = (function () {
     this.currentLife = options.currentLife;
     this.experience = options.experience;
     this.weapon = options.weapon;
+    this.level = options.level, this.levelUp = options.levelUp;
   }
 
-  _createClass(person, {
+  _createClass(character, {
     unequipWeapon: {
       value: function unequipWeapon() {
         this.strength -= this.weapon.damage;
@@ -95,12 +104,14 @@ var person = (function () {
     },
     render: {
       value: function render() {
-        console.log(this);
+        for (var i in this) {
+          console.log("" + i + ": " + this[i]);
+        }
       }
     }
   });
 
-  return person;
+  return character;
 })();
 
 var weapon = (function () {
@@ -135,6 +146,9 @@ var magic = (function () {
   }
 
   _createClass(magic, {
+    use: {
+      value: function use() {}
+    },
     render: {
       value: function render() {
         console.log(this);
@@ -161,8 +175,8 @@ var sword = new weapon({
   agility: 6
 });
 
-var thandion = new person({
-  fname: "Thandion",
+var thandion = new character({
+  cname: "Thandion",
   race: "Elf",
   clique: "Bard",
   baseStrength: 1,
@@ -179,7 +193,9 @@ var thandion = new person({
   fullLife: 40,
   currentLife: 40,
   experience: 0,
-  weapon: "hand"
+  weapon: "hand",
+  level: 4,
+  levelUp: 150
 });
 
 var speed = new magic({
