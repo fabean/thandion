@@ -1,6 +1,10 @@
 # thandion (need a real name)
 A tabletop RPG character tracker
 
+This is all bad and reeds to be completely rewritten...
+
+
+
 This is just starting out but it is actually functional, which is nice.
 
 The point of this is to make a full featured character builder/tracker that can be used in any RPG.
