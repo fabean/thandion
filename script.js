@@ -105,10 +105,11 @@ var character = (function () {
     },
     render: {
       value: function render() {
-        var output = document.getElementById("output");
+        var output = document.getElementById("character");
+        output.innerHTML = "";
         for (var i in this) {
           console.log("" + i + ": " + this[i]);
-          output.innerHTML += "" + i + ": " + this[i];
+          output.innerHTML += "" + i + ": " + this[i] + " <br/>";
         }
       }
     }
