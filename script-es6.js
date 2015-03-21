@@ -87,8 +87,10 @@ class character {
   }
 
   render() {
+    let output = document.getElementById('output');
     for (let i in this) {
       console.log(`${i}: ${this[i]}`);
+      output.innerHTML += `${i}: ${this[i]}`;
     }
   }
 }

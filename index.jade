@@ -5,28 +5,10 @@ html
   body
 
     #input.divider.hidden
-      div what do you want to track
-      div.set
-        label label
-        input#key
-      div.set
-        label value
-        input#value
-        div#radio
-          p what type of field is this
-          input(type="radio", name="type", class="number", value="number", checked="true")
-          | Number
-          input(type="radio", name="type", class="text", value="text")
-          | Text
-          input(type="radio", name="type", class="textarea", value="textarea")
-          | Long Text
-      button#submit add
+      
     #character.divider.hidden
       #output
       button#save save
-    #overlay.hidden
-      #firstprompt
-        p Would you like to use the wizard to help you get started?
-        button#yes yes
-        button#no no
+    #output
+      
     script(src="script.js")
