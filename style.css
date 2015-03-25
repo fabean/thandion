@@ -1,32 +1,43 @@
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 body {
-  background: #3498db; }
+  background: #3498db;
+  color: #2a2a2a;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
 
 .hidden {
-  display: none; }
+  display: none;
+}
 
-.divider {
+.half {
   width: 50%;
   float: left;
-  padding: 25px; }
+  padding: 25px;
+}
 
 .delete {
   margin: 0 5px;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .set {
-  margin: 10px 0; }
-  .set label {
-    width: 14%;
-    margin: 0 5px;
-    display: inline-block;
-    text-align: right;
-    text-transform: capitalize; }
-    #output .set label {
-      background: url("./img/draggable.png") no-repeat center left;
-      background-size: 10px;
-      cursor: move; }
+  margin: 10px 0;
+}
+.set label {
+  width: 14%;
+  margin: 0 5px;
+  display: inline-block;
+  text-align: right;
+  text-transform: capitalize;
+}
+#output .set label {
+  background: url("./img/draggable.png") no-repeat center left;
+  background-size: 10px;
+  cursor: move;
+}
 
 /*# sourceMappingURL=style.css.map */

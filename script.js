@@ -27,7 +27,7 @@ var character = (function () {
     this.baseMeleeOB = options.baseMeleeOB;
     this.baseMissileOB = options.baseMissileOB;
     this.baseGeneral = options.baseGeneral;
-    this.baseSubterfuge = options.baseBubterfuge;
+    this.baseSubterfuge = options.baseSubterfuge;
     this.basePerception = options.basePerception;
     this.baseMagical = options.baseMagical;
     this.fullLife = options.fullLife;
@@ -35,6 +35,7 @@ var character = (function () {
     this.experience = options.experience;
     this.weapon = options.weapon;
     this.level = options.level, this.levelUp = options.levelUp;
+    this.render();
   }
 
   _createClass(character, {
@@ -42,18 +43,21 @@ var character = (function () {
       value: function unequipWeapon() {
         this.strength -= this.weapon.damage;
         this.weapon = "hand";
+        this.render();
       }
     },
     equipWeapon: {
       value: function equipWeapon(weapon) {
-        this.weapon = weapon;
+        this.weapon = weapon.title;
         this.strength = this.baseStrength + weapon.damage;
+        this.render();
       }
     },
     equipMagic: {
       value: function equipMagic(magic) {
         this.magic = magic;
         this.fullMagical = this.baseMagical + magic.damage;
+        this.render();
       }
     },
     takeDamage: {
@@ -62,6 +66,7 @@ var character = (function () {
         if (this.currentLife <= 0) {
           this.loseFight();
         }
+        this.render();
       }
     },
     beginFight: {
@@ -70,6 +75,7 @@ var character = (function () {
           this.opponent = null;
         }
         this.opponent = enemy;
+        this.render();
       }
     },
     winFight: {
@@ -92,11 +98,13 @@ var character = (function () {
         if (this.opponent.life <= 0) {
           this.winFight();
         }
+        this.render();
       }
     },
     castSpell: {
       value: function castSpell(spell) {
         this.takeDamage(spell.selfDamage);
+        this.render();
         // this.opponent.life -= this.fullMagical;
         // if(this.opponent.life <= 0){
         //   this.winFight();
@@ -106,12 +114,16 @@ var character = (function () {
     render: {
       value: function render() {
         var output = document.getElementById("character");
-        output.innerHTML = "";
+        output.innerHTML = "<h3 class=\"title\">" + this.cname + "</h3>";
         for (var i in this) {
+          if (i !== "cname") {
+            output.innerHTML += "" + i + ": " + this[i] + " <br/>";
+          }
           console.log("" + i + ": " + this[i]);
-          output.innerHTML += "" + i + ": " + this[i] + " <br/>";
         }
       }
+      // window.currentCharacter = this;
+
     }
   });
 
@@ -133,7 +145,17 @@ var weapon = (function () {
   _createClass(weapon, {
     render: {
       value: function render() {
-        console.log(this);
+        var output = document.getElementById("weapon");
+
+        output.innerHTML = "<h3 class=\"title\">" + this.title + "</h3>";
+        for (var i in this) {
+          if (i !== "title") {
+            output.innerHTML += "" + i + ": " + this[i] + " <br/>";
+          }
+          console.log("" + i + ": " + this[i]);
+        }
+        output.innerHTML += "<button class=\"action\" onClick=\"window.currentCharacter.equipWeapon(" + this.title.toLocaleLowerCase() + ")\">Equip " + this.title + "</button>";
+        output.innerHTML += "<button class=\"action\" onClick=\"window.currentCharacter.unequipWeapon(" + this.title.toLocaleLowerCase() + ")\">Unequip " + this.title + "</button>";
       }
     }
   });
@@ -148,6 +170,8 @@ var magic = (function () {
     this.title = options.title;
     this.selfDamage = options.selfDamage;
     this.damage = options.damage;
+
+    this.render();
   }
 
   _createClass(magic, {
@@ -156,7 +180,15 @@ var magic = (function () {
     },
     render: {
       value: function render() {
-        console.log(this);
+        var output = document.getElementById("magic");
+        output.innerHTML = "<h3 class=\"title\">" + this.title + "</h3>";
+        for (var i in this) {
+          if (i !== "title") {
+            output.innerHTML += "" + i + ": " + this[i] + " <br/>";
+          }
+          console.log("" + i + ": " + this[i]);
+        }
+        output.innerHTML += "<button class=\"action\" onClick=\"window.currentCharacter.castSpell(" + this.title.toLocaleLowerCase() + ")\">Use " + this.title + "</button>";
       }
     }
   });
@@ -214,3 +246,7 @@ var gorlak = new enemy({
   life: 30,
   fullLife: 30
 });
+
+(function init() {
+  window.currentCharacter = thandion;
+})();

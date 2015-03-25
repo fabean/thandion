@@ -3,11 +3,41 @@ html
     title my site
     link(href='style.css', rel='stylesheet')
   body
-
-    #input.divider.hidden
       
-    #output
-      #character
-      #weapon
-      
+    #output.half
+      #character-container
+        h2 Character
+        #character
+      #weapon-container
+        h2 Weapons
+        #weapon
+      #magic-container
+        h2 Magic
+        #magic
+        
+    #input.half
+      button new weapon
+      button new magic
+      #weapon-creator.hidden
+        .set
+          label Title
+          input.title
+        .set
+          label Damage
+          input.damage
+        .set
+          label Defense
+          input.defense
+        .set
+          label Agility
+          input.agility
+        button#create-weapon create
+      #magic-creator.hidden
+        .set
+          label Title
+          input.title
+        .set
+          label Self Damage
+          input.selfdamage
+        button#create-magic create
     script(src="script.js")
