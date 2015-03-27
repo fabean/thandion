@@ -41,7 +41,7 @@ var character = (function () {
   _createClass(character, {
     unequipWeapon: {
       value: function unequipWeapon() {
-        this.strength -= this.weapon.damage;
+        this.strength = this.baseStrength;
         this.weapon = "hand";
         this.render();
       }
@@ -117,7 +117,7 @@ var character = (function () {
         output.innerHTML = "<h3 class=\"title\">" + this.cname + "</h3>";
         for (var i in this) {
           if (i !== "cname") {
-            output.innerHTML += "" + i + ": " + this[i] + " <br/>";
+            output.innerHTML += "" + i + ": " + String(this[i]) + " <br/>";
           }
           console.log("" + i + ": " + this[i]);
         }
@@ -249,4 +249,36 @@ var gorlak = new enemy({
 
 (function init() {
   window.currentCharacter = thandion;
+
+  var showMagic = document.getElementById("show-new-magic");
+  var showWeapon = document.getElementById("show-new-weapon");
+
+  showMagic.addEventListener("click", function () {
+    document.getElementById("magic-creator").classList.remove("hidden");
+  }, true);
+  showWeapon.addEventListener("click", function () {
+    document.getElementById("weapon-creator").classList.remove("hidden");
+  }, true);
+
+  var createWeapon = document.getElementById("create-weapon");
+  createWeapon.addEventListener("click", createNewWeapon, false);
+
+  var createMagic = document.getElementById("create-magic");
+  createMagic.addEventListener("click", createNewMagic, false);
 })();
+
+function createNewMagic() {
+  console.log("in create new magic");
+  var newMagicForm = [].slice.call(document.getElementById("magic-creator").getElementsByTagName("input"), 0);
+
+  var title = newMagicForm[0].value;
+  var selfDamage = newMagicForm[1].value;
+  console.log(title);
+
+  var newMagic = new magic({
+    title: title,
+    selfDamage: selfDamage
+  });
+}
+
+function createNewWeapon() {}
