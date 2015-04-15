@@ -148,7 +148,7 @@ class magic {
 
   render() {
     let output = document.getElementById('magic');
-    output.innerHTML = `<h3 class="title">${this.title}</h3>`
+    output.innerHTML += `<h3 class="title">${this.title}</h3>`
     for (let i in this) {
       if (i !== 'title') {
         output.innerHTML += `${i}: ${this[i]} <br/>`;

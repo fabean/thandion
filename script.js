@@ -181,7 +181,7 @@ var magic = (function () {
     render: {
       value: function render() {
         var output = document.getElementById("magic");
-        output.innerHTML = "<h3 class=\"title\">" + this.title + "</h3>";
+        output.innerHTML += "<h3 class=\"title\">" + this.title + "</h3>";
         for (var i in this) {
           if (i !== "title") {
             output.innerHTML += "" + i + ": " + this[i] + " <br/>";
